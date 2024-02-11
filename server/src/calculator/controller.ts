@@ -90,7 +90,7 @@ export function sqrtController(request: Request, response: Response) {
     return response.status(422).send({ message: "a must be numbers" });
   }
 
-  const result = Math.sqrt(num1) ;
+  const result = Math.sqrt(num1);
 
   return response.send({ result });
 }
@@ -127,6 +127,36 @@ export function metersKmController(request: Request, response: Response) {
   }
 
   const result = num1 / 1000;
+
+  return response.send({ result });
+}
+
+//primeNumber
+export function primeNumberController(request: Request, response: Response) {
+  const body = request.body;
+  const num1 = body.a;
+
+  if (!num1) {
+    return response.status(422).send({ message: "a must be provided" });
+  }
+
+  if (typeof num1 !== "number") {
+    return response.status(422).send({ message: "a must be numbers" });
+  }
+
+  function primo(number: number) {
+    if (number <= 1) {
+      return false; // Os números menores ou  iguais a  1 não são primos
+    }
+    for (let i = 2; i < number; i++) {
+      if (number % i === 0) {
+        return false; // Encontrou um divisor diferente de  1 e do próprio número
+      }
+    }
+    return true; // Não encontrou outros divisores além de  1 e do próprio número
+  }
+
+  const result = primo(num1);
 
   return response.send({ result });
 }

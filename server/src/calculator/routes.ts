@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { subController, sumController, divController, multController, sqrtController, metersCmController, metersKmController } from "./controller";
+import { subController, sumController, divController, multController, sqrtController, metersCmController, metersKmController, primeNumberController } from "./controller";
 
 const calculatorRoutes = Router();
 
@@ -16,6 +16,9 @@ calculatorRoutes.post("/sqrt", sqrtController);
 calculatorRoutes.post("/meters-cm", metersCmController);
 
 calculatorRoutes.post("/meters-km", metersKmController);
+
+calculatorRoutes.post("/prime-number", primeNumberController);
+
 
 
 
