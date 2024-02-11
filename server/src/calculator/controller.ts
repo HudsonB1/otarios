@@ -160,3 +160,29 @@ export function primeNumberController(request: Request, response: Response) {
 
   return response.send({ result });
 }
+
+//even number
+export function evenNumberController(request: Request, response: Response) {
+  const body = request.body;
+  const num1 = body.a;
+
+  if (!num1) {
+    return response.status(422).send({ message: "a must be provided" });
+  }
+
+  if (typeof num1 !== "number") {
+    return response.status(422).send({ message: "a must be numbers" });
+  }
+
+  function even(number: number) {
+    if (number % 2 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const result = even(num1);
+
+  return response.send({ result });
+}
