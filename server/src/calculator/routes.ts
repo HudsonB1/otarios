@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { subController, sumController, divController, multController, sqrtController, metersCmController, metersKmController, primeNumberController, evenNumberController } from "./controller";
+import { subController, sumController, divController, multController, sqrtController, metersCmController, metersKmController, primeNumberController, evenNumberController, oddNumberController } from "./controller";
 
 const calculatorRoutes = Router();
 
@@ -21,8 +21,6 @@ calculatorRoutes.post("/prime-number", primeNumberController);
 
 calculatorRoutes.post("/even-number", evenNumberController);
 
-
-
-
+calculatorRoutes.post("/odd-number", oddNumberController);
 
 export default calculatorRoutes;

@@ -186,3 +186,29 @@ export function evenNumberController(request: Request, response: Response) {
 
   return response.send({ result });
 }
+
+//odd number
+export function oddNumberController(request: Request, response: Response) {
+  const body = request.body;
+  const num1 = body.a;
+
+  if (!num1) {
+    return response.status(422).send({ message: "a must be provided" });
+  }
+
+  if (typeof num1 !== "number") {
+    return response.status(422).send({ message: "a must be numbers" });
+  }
+
+  function odd(number: number) {
+    if (number % 2 === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  const result = odd(num1);
+
+  return response.send({ result });
+}
