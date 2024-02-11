@@ -112,3 +112,21 @@ export function metersCmController(request: Request, response: Response) {
 
   return response.send({ result });
 }
+
+//meters to km
+export function metersKmController(request: Request, response: Response) {
+  const body = request.body;
+  const num1 = body.a;
+
+  if (!num1) {
+    return response.status(422).send({ message: "a must be provided" });
+  }
+
+  if (typeof num1 !== "number") {
+    return response.status(422).send({ message: "a must be numbers" });
+  }
+
+  const result = num1 / 1000;
+
+  return response.send({ result });
+}
