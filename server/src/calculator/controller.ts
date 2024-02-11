@@ -76,3 +76,39 @@ export function multController(request: Request, response: Response) {
 
   return response.send({ result });
 }
+
+//sqrt
+export function sqrtController(request: Request, response: Response) {
+  const body = request.body;
+  const num1 = body.a;
+
+  if (!num1) {
+    return response.status(422).send({ message: "a must be provided" });
+  }
+
+  if (typeof num1 !== "number") {
+    return response.status(422).send({ message: "a must be numbers" });
+  }
+
+  const result = Math.sqrt(num1) ;
+
+  return response.send({ result });
+}
+
+//meters to cm
+export function metersCmController(request: Request, response: Response) {
+  const body = request.body;
+  const num1 = body.a;
+
+  if (!num1) {
+    return response.status(422).send({ message: "a must be provided" });
+  }
+
+  if (typeof num1 !== "number") {
+    return response.status(422).send({ message: "a must be numbers" });
+  }
+
+  const result = num1 * 100;
+
+  return response.send({ result });
+}
