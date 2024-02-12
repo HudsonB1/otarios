@@ -1,18 +1,16 @@
 import { Request, Response } from "express";
+import calculatorControlerValidator from "./validator";
 
+const validator = calculatorControlerValidator();
 
 // sum
 export function sumController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
-  const num2 = body.b;
+  const num1 = Number(body.a);
+  const num2 = Number(body.b);
 
-  if (!num1 || !num2) {
-    return response.status(422).send({ message: "a or b must be provided" });
-  }
-
-  if (typeof num1 !== "number" || typeof num2 !== "number") {
-    return response.status(422).send({ message: "a and b must be numbers" });
+  if (!validator.validateNumbersOperation(num1, num2)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   const result = num1 + num2;
@@ -23,15 +21,11 @@ export function sumController(request: Request, response: Response) {
 // sub
 export function subController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
-  const num2 = body.b;
+  const num1 = Number(body.a);
+  const num2 = Number(body.b);
 
-  if (!num1 || !num2) {
-    return response.status(422).send({ message: "a or b must be provided" });
-  }
-
-  if (typeof num1 !== "number" || typeof num2 !== "number") {
-    return response.status(422).send({ message: "a and b must be numbers" });
+  if (!validator.validateNumbersOperation(num1, num2)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   const result = num1 - num2;
@@ -42,17 +36,12 @@ export function subController(request: Request, response: Response) {
 //div
 export function divController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
-  const num2 = body.b;
+  const num1 = Number(body.a);
+  const num2 = Number(body.b);
 
-  if (!num1 || !num2) {
-    return response.status(422).send({ message: "a or b must be provided" });
+  if (!validator.validateNumbersOperation(num1, num2)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
-
-  if (typeof num1 !== "number" || typeof num2 !== "number") {
-    return response.status(422).send({ message: "a and b must be numbers" });
-  }
-
   const result = num1 / num2;
 
   return response.send({ result });
@@ -61,17 +50,12 @@ export function divController(request: Request, response: Response) {
 //mult
 export function multController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
-  const num2 = body.b;
+  const num1 = Number(body.a);
+  const num2 = Number(body.b);
 
-  if (!num1 || !num2) {
-    return response.status(422).send({ message: "a or b must be provided" });
+  if (!validator.validateNumbersOperation(num1, num2)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
-
-  if (typeof num1 !== "number" || typeof num2 !== "number") {
-    return response.status(422).send({ message: "a and b must be numbers" });
-  }
-
   const result = num1 * num2;
 
   return response.send({ result });
@@ -80,14 +64,10 @@ export function multController(request: Request, response: Response) {
 //sqrt
 export function sqrtController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
+  const num1 = Number(body.a);
 
-  if (!num1) {
-    return response.status(422).send({ message: "a must be provided" });
-  }
-
-  if (typeof num1 !== "number") {
-    return response.status(422).send({ message: "a must be numbers" });
+  if (!validator.validateNumbersOperation(num1)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   const result = Math.sqrt(num1);
@@ -98,14 +78,10 @@ export function sqrtController(request: Request, response: Response) {
 //meters to cm
 export function metersCmController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
+  const num1 = Number(body.a);
 
-  if (!num1) {
-    return response.status(422).send({ message: "a must be provided" });
-  }
-
-  if (typeof num1 !== "number") {
-    return response.status(422).send({ message: "a must be numbers" });
+  if (!validator.validateNumbersOperation(num1)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   const result = num1 * 100;
@@ -116,14 +92,10 @@ export function metersCmController(request: Request, response: Response) {
 //meters to km
 export function metersKmController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
+  const num1 = Number(body.a);
 
-  if (!num1) {
-    return response.status(422).send({ message: "a must be provided" });
-  }
-
-  if (typeof num1 !== "number") {
-    return response.status(422).send({ message: "a must be numbers" });
+  if (!validator.validateNumbersOperation(num1)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   const result = num1 / 1000;
@@ -134,14 +106,10 @@ export function metersKmController(request: Request, response: Response) {
 //primeNumber
 export function primeNumberController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
+  const num1 = Number(body.a);
 
-  if (!num1) {
-    return response.status(422).send({ message: "a must be provided" });
-  }
-
-  if (typeof num1 !== "number") {
-    return response.status(422).send({ message: "a must be numbers" });
+  if (!validator.validateNumbersOperation(num1)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   function primo(number: number) {
@@ -164,16 +132,11 @@ export function primeNumberController(request: Request, response: Response) {
 //even number
 export function evenNumberController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
+  const num1 = Number(body.a);
 
-  if (!num1) {
-    return response.status(422).send({ message: "a must be provided" });
+  if (!validator.validateNumbersOperation(num1)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
-
-  if (typeof num1 !== "number") {
-    return response.status(422).send({ message: "a must be numbers" });
-  }
-
   function even(number: number) {
     if (number % 2 === 0) {
       return true;
@@ -190,14 +153,10 @@ export function evenNumberController(request: Request, response: Response) {
 //odd number
 export function oddNumberController(request: Request, response: Response) {
   const body = request.body;
-  const num1 = body.a;
+  const num1 = Number(body.a);
 
-  if (!num1) {
-    return response.status(422).send({ message: "a must be provided" });
-  }
-
-  if (typeof num1 !== "number") {
-    return response.status(422).send({ message: "a must be numbers" });
+  if (!validator.validateNumbersOperation(num1)) {
+    return response.status(422).send({ message: "your entries are invalid" });
   }
 
   function odd(number: number) {
